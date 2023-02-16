@@ -24,7 +24,7 @@ int getThirthNumber(){
         Console.Write($"Третья цифра:" + thirthNumber.ToString());
         return thirthNumber;
     } else {
-        Console.Write($"Вы ввели не трёхзначное число\n");    
+        Console.Write($"Третьей цифры нет. Введите трёхзначное число\n");    
         return getThirthNumber();
     }  
 }
