@@ -1,25 +1,32 @@
-﻿/* Напишите программу, которая принимает на вход координаты точки (X и Y),
-причём X <> 0 и Y <> 0 и выдаёт номер четверти плоскости, в которой находится эта точка */
+﻿/* Напишите программу, которая по заданному номеру четверти показывает диапазон возможных точек в этой четверти (X и Y)*/
 
-int x,y;
-Console.Write($"Введите x: ");
-int.TryParse(Console.ReadLine()!, out x);
-Console.Write($"Введите y: ");
-int.TryParse(Console.ReadLine()!, out y);
+int n;
+Console.Write($"Введите номер плоскости: ");
+int.TryParse(Console.ReadLine()!, out n);
 
-if (x > 0)
+switch (n)
 {
-    if (y > 0)
-    {
-        Console.Write($"Плоскость 1");
-    } else {
-        Console.Write($"Плоскость 4");
-    }
-} else {
-    if (y > 0)
-    {
-        Console.Write($"Плоскость 2");
-    } else {
-        Console.Write($"Плоскость 3");
-    }
+    case 1: Console.Write($"X>0 Y>0");
+    break;
+    case 2: Console.Write($"X<0 Y>0");
+    break;
+    case 6:
+    case 3: 
+    case 8:
+    Console.Write($"X<0 Y<0");
+    break;
+    case 4: Console.Write($"X>0 Y<0");
+    break;
+    default: 
+    Console.Write($"Неверно введён номер плоскости");
+    break;
 }
+
+/* if (n == 1)
+    Console.Write($"X>0 Y>0");
+else if (n == 2)
+    Console.Write($"X<0 Y>0");
+else if (n == 3)
+    Console.Write($"X<0 Y<0");    
+else if (n == 4)
+    Console.Write($"X>0 Y<0");    */ 
