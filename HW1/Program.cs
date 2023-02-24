@@ -1,29 +1,24 @@
-﻿/* Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
-14212 -> нет
-12821 -> да
-23432 -> да */
+﻿/* Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
+3, 5 -> 243 (3⁵)
+2, 4 -> 16 */
 
-bool isPalindrome(int a){
-    string intToStr = a.ToString();
-    int length = intToStr.Length;
-        for (int i = 0; i < (length / 2); i++) {
-            if (intToStr[i] != intToStr[length - i - 1]) {
-                return false;
-            }
-        }
-    return true;
+int a = TakeInt($"Введите число A: ");
+int b = TakeInt($"Введите число B: ");
+
+Console.Write($"{a} -> {getPow(a, b)}");
+
+double getPow(int a, int b){
+    double result = a;
+    for (int i = 1; i < b; i++)
+    {
+        result *= a;
+    }
+    return result;
 }
 
-int number;
-Console.Write($"Введите пятизначное число: ");
-bool isCorrect = int.TryParse(Console.ReadLine()!, out number);
-if (isCorrect & number.ToString().Length == 5)
-{
-    if (isPalindrome(number)){
-        Console.Write($"Число является палиндромом");
-    } else {
-        Console.Write($"Число не является палиндромом");
-    }
-} else {
-    Console.Write($"Введено не корректное число");
+int TakeInt(string str = $"Введите число: "){
+    int number;
+    Console.Write(str);
+    int.TryParse(Console.ReadLine()!, out number);
+    return number;
 }

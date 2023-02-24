@@ -1,4 +1,31 @@
-﻿//1:14:33
+﻿
+int a = TakeInt($"Введите число a: ");
+
+Console.Write($"{a} -> {Digits(a)}");
+
+int Digits(int a){
+    //Факториал
+    int result = 1;
+    for (int i = 2; i <= a; i++)
+    {
+        result *= i;
+    }
+    return result;
+}    
+
+/*int Digits(int a){
+    //Возврат количества символов в числе
+    int count = 0;
+    if (a == 0)
+        return 1;
+    while (a != 0) {
+        a /= 10;
+        count++;
+    }
+    return count;
+}*/
+
+/*
 int a = TakeInt($"Введите число a: ");
 
 int Sum(int a){
@@ -11,7 +38,7 @@ int Sum(int a){
 }
 
 Console.Write($"{a} -> {Sum(a)}");
-
+*/
 int TakeInt(string str = $"Введите число: "){
     int number;
     Console.Write(str);

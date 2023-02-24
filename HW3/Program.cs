@@ -1,21 +1,19 @@
-﻿/* Задача 23
-Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
-3 -> 1, 8, 27
-5 -> 1, 8, 27, 64, 125 */
+﻿/* Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+6, 1, 33 -> [6, 1, 33] */
 
-int number;
-Console.Write($"Введите число: ");
-bool isCorrect = int.TryParse(Console.ReadLine()!, out number);
-if (isCorrect)
+int[] array = CreateArray();
+
+for (int i = 0; i < array.Length; i++)
 {
-    Console.Write($"{number} -> ");
-    for (int i = 1; i <= number; i++)
+    Console.Write($"{array[i]} ");
+}
+
+int[] CreateArray(){
+    int[] array = new int[8];
+    for (int i = 0; i < array.Length; i++)
     {
-        if (i != number)
-        Console.Write($"{Math.Pow(i, 3)}, ");
-        else 
-        Console.Write($"{Math.Pow(i, 3)}");
+        array[i] = new Random().Next(0, 100);
     }
-} else {
-    Console.Write($"Введено не корректное число");
+    return array;
 }
