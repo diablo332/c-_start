@@ -1,5 +1,28 @@
-﻿
-int a = TakeInt($"Введите число a: ");
+﻿Point point = new Point();
+struct Point
+{
+    public double x;
+    public double y;
+    public double z;
+    void TakeCoords(){
+
+        string coords = Console.ReadLine()!;
+        double[] numbers = coords.Split(' ').Where(x => double.TryParse(x, out _)).Select(double.Parse).ToArray(); 
+        //List<int> numbers = new List<int>(Array.ConvertAll(coords.Split(' '), int.Parse));
+        if (numbers.Length != 3){
+            x = 0;
+            y = 0;
+            z = 0;
+            return;
+        }
+            
+        x = numbers[0];
+        y = numbers[1];
+        z = numbers[2];
+    }
+}
+
+/* int a = TakeInt($"Введите число a: ");
 
 Console.Write($"{a} -> {Digits(a)}");
 
@@ -11,7 +34,7 @@ int Digits(int a){
         result *= i;
     }
     return result;
-}    
+}     */
 
 /*int Digits(int a){
     //Возврат количества символов в числе
