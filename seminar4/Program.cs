@@ -62,12 +62,12 @@ int Sum(int a){
 
 Console.Write($"{a} -> {Sum(a)}");
 */
-int TakeInt(string str = $"Введите число: "){
+/*int TakeInt(string str = $"Введите число: "){
     int number;
     Console.Write(str);
     int.TryParse(Console.ReadLine()!, out number);
     return number;
-}
+}*/
 
 
 /*int a = TakeInt($"Введите число a: ");
@@ -83,7 +83,7 @@ int.TryParse(Console.ReadLine()!, out c);
 
 Console.Write($"Max = {Max3(a, b, c)}" ); */
 
-string Text (string text){
+/* string Text (string text){
     string border = "--";
     for (int i = 0; i < text.Length; i++)
     {
@@ -104,7 +104,7 @@ int Max(int a, int b){
         max = a;
     }
     return max;    
-} 
+}  */
 /* void Max(int a, int b){
     int max = a;
     if (b > max){
