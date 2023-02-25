@@ -1,24 +1,27 @@
-﻿/* Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
-3, 5 -> 243 (3⁵)
-2, 4 -> 16 */
+﻿/* Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
+Напишите программу, которая покажет количество чётных чисел в массиве.
+[345, 897, 568, 234] -> 2 */
 
-int a = TakeInt($"Введите число A: ");
-int b = TakeInt($"Введите число B: ");
+int[] array = FillArray(5, 100, 999);
+Console.Write($"{String.Join(", ", array)}, -> {getOddNumbersCount(array)}\n");
 
-Console.Write($"{a} -> {getPow(a, b)}");
-
-double getPow(int a, int b){
-    double result = a;
-    for (int i = 1; i < b; i++)
+int getOddNumbersCount(int[] a){
+    int count = 0;
+    for (int i = 0; i < a.Length; i++)
     {
-        result *= a;
+        if (a[i] % 2 == 0){
+            count++;
+        }
     }
-    return result;
+    return count;
 }
 
-int TakeInt(string str = $"Введите число: "){
-    int number;
-    Console.Write(str);
-    int.TryParse(Console.ReadLine()!, out number);
-    return number;
+int[] FillArray(int size, int min = 0, int max = 10)
+{
+    int[] arr = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        arr.SetValue(new Random().Next(min, max), i);
+    }
+    return arr;
 }

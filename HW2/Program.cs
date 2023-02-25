@@ -1,24 +1,27 @@
-﻿/* Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
-452 -> 11
-82 -> 10
-9012 -> 12 */
+﻿/* Задача 36: Задайте одномерный массив, заполненный случайными числами. 
+Найдите сумму элементов, стоящих на нечётных позициях.
+[3, 7, 23, 12] -> 19
+[-4, -6, 89, 6] -> 0 */
 
-int a = TakeInt($"Введите число: ");
+int[] array = FillArray(5, 10, 99);
+Console.Write($"{String.Join(", ", array)}, -> {getOddIndexesSum(array)}\n");
 
-Console.Write($"{a} -> {getDigitsSum(a)}");
-
-int getDigitsSum(int a){
-    int result = 0;
-    while (a != 0) {
-        result += a % 10;
-        a /= 10;     
+int getOddIndexesSum(int[] a){
+    int sum = 0;
+    int i = 1;
+    while (i <= a.Length -1){
+        sum += a[i];
+        i += 2;
     }
-    return result;
+    return sum;
 }
 
-int TakeInt(string str = $"Введите число: "){
-    int number;
-    Console.Write(str);
-    int.TryParse(Console.ReadLine()!, out number);
-    return number;
+int[] FillArray(int size, int min = 0, int max = 10)
+{
+    int[] arr = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        arr.SetValue(new Random().Next(min, max), i);
+    }
+    return arr;
 }

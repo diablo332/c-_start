@@ -1,25 +1,59 @@
-﻿Point point = new Point();
-struct Point
-{
-    public double x;
-    public double y;
-    public double z;
-    void TakeCoords(){
+﻿int[] array2 = FillArray(3, 0, 10);
+Console.Write($"{String.Join(", ", array2)}\n");
+int[] array3 = new int[array2.Length / 2 + array2.Length % 2];
+MultiplyPairs(array2, array3);
+Console.Write($"{String.Join(", ", array3)}\n");
 
-        string coords = Console.ReadLine()!;
-        double[] numbers = coords.Split(' ').Where(x => double.TryParse(x, out _)).Select(double.Parse).ToArray(); 
-        //List<int> numbers = new List<int>(Array.ConvertAll(coords.Split(' '), int.Parse));
-        if (numbers.Length != 3){
-            x = 0;
-            y = 0;
-            z = 0;
-            return;
-        }
-            
-        x = numbers[0];
-        y = numbers[1];
-        z = numbers[2];
+void MultiplyPairs(int[] arr, int[] pair){
+    int size = arr.Length;
+    int pairSize = pair.Length;
+
+    for (int i = 0; i < size / 2; i++)
+    {
+        int rev = size - i - 1;
+        pair[i] = arr[i] * arr[rev];    
     }
+    if (size % 2 != 0){
+        pair[pairSize - 1] = arr[pairSize - 1];
+    }
+}
+
+/* void Change(int b)
+{
+    b = 1;
+} */
+
+/* int[] InverseElements(int[] arr){
+    for (int i = 0; i < arr.Length; i++)
+    {
+        arr[i] *= -1;    
+    }
+    return arr;
+} */
+
+/* int pos = 0;
+int neg = 0; */
+
+/* foreach (int item in array2)
+{
+    pos += item > 0 ? item : 0; 
+    neg += item < 0 ? item : 0; 
+   if (item > 0){
+        pos += item;
+    } else {
+        neg += item;
+    }  
+} */
+
+
+int[] FillArray(int size, int min = 0, int max = 10)
+{
+    int[] arr = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        arr.SetValue(new Random().Next(min, max), i);
+    }
+    return arr;
 }
 
 /* int a = TakeInt($"Введите число a: ");
