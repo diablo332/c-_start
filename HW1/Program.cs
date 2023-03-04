@@ -1,27 +1,23 @@
-﻿/* Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
-Напишите программу, которая покажет количество чётных чисел в массиве.
-[345, 897, 568, 234] -> 2 */
+﻿/* Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+m = 3, n = 4.
+0,5 7 -2 -0,2
+1 -3,3 8 -9,9
+8 7,8 -7,1 9*/
 
-int[] array = FillArray(5, 100, 999);
-Console.Write($"{String.Join(", ", array)}, -> {getOddNumbersCount(array)}\n");
+double[,] array = new double[3, 4];
+array = FillArray(array);
+Console.Write($"{String.Join(", ", array)}\n");
 
-int getOddNumbersCount(int[] a){
-    int count = 0;
-    for (int i = 0; i < a.Length; i++)
-    {
-        if (a[i] % 2 == 0){
-            count++;
-        }
-    }
-    return count;
-}
-
-int[] FillArray(int size, int min = 0, int max = 10)
+double[,] FillArray(double[,]  arr)
 {
-    int[] arr = new int[size];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i <= array.GetLength(0) - 1; i++)
     {
-        arr.SetValue(new Random().Next(min, max), i);
+        for (int j = 0; j <= array.GetLength(1) - 1; j++)
+        {
+            array[i, j] = new Random().Next(10, 100);
+            Console.Write($"{array[i, j]} ");
+        }
+        Console.WriteLine();
     }
     return arr;
 }

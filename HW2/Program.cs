@@ -1,22 +1,42 @@
-﻿/* Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5) */
-double b1 = 0;
-Console.WriteLine("Введите значение b1");
-double.TryParse(Console.ReadLine(), out b1);
+﻿/* Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+17 -> такого числа в массиве нет */
 
-double k1 = 0;
-Console.WriteLine("Введите значение k1");
-double.TryParse(Console.ReadLine(), out k1);
+double[,] array = new double[3, 4];
+array = FillArray(array);
+int row;
+int col;
+Console.Write("Введите позицию строки: ");
+if (int.TryParse(Console.ReadLine()!, out row)){
+    if (row <= array.GetLength(0) && row > 0){
+        Console.Write("Введите позицию столбца: ");
+        if (int.TryParse(Console.ReadLine()!, out col)){
+            if (col <= array.GetLength(1) && col > 0){
+                Console.Write($"Значение: {array[row - 1, col - 1]}");
+            } else 
+                Console.Write("Такой позиции не существует");
+        } else 
+            Console.Write("Такой позиции не существует");
+    } else {
+        Console.Write("Такой позиции не существует");
+    }
 
-double b2 = 0;
-Console.WriteLine("Введите значение b2");
-double.TryParse(Console.ReadLine(), out b2);
+} else 
+    Console.Write("Введено не верное значение");
 
-double k2 = 0;
-Console.WriteLine("Введите значение k2");
-double.TryParse(Console.ReadLine(), out k2);
-
-double x = (-b2 + b1)/(-k1 + k2);
-double y = k2 * x + b2;
-
-Console.WriteLine($"Прямые пересекутся в точке с координатами X: {x}, Y: {y}");
+double[,] FillArray(double[,]  arr)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(10, 100);
+            Console.Write($"{array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+    return arr;
+}
