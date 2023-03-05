@@ -1,36 +1,46 @@
-﻿/* Задача 52. Задайте двумерный массив из целых чисел. 
-Найдите среднее арифметическое элементов в каждом столбце.
-Например, задан массив:
-1 4 7 2
-5 9 2 3
-8 4 2 4
-Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3. */
+﻿/* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+Например, даны 2 матрицы:
+2 4 | 3 4
+3 2 | 3 3
+Результирующая матрица будет:
+18 20
+15 18 */
 
-int[,] array = new int[3, 4];
-array = FillArray(array);
-double avg = 0;
-Console.Write("Среднее арифметическое каждого столбца: ");
-for (int j = 0; j <= array.GetLength(1) - 1; j++)
+
+List<List<int>> a = new List<List<int>>();
+a = FillArray(a, 2, 2);
+Console.WriteLine("--------");
+List<List<int>> b = new List<List<int>>();
+b = FillArray(b, a.Count, a[0].Count);
+Console.WriteLine("--------");
+List<List<int>> c = new List<List<int>>();
+for (int i = 0; i < a.Count; i++)
 {
-    avg = 0;
-    for (int i = 0; i <= array.GetLength(0) - 1; i++)
+    c.Add(new List<int>());
+    for (int j = 0; j < b[i].Count; j++)
     {
-        avg += array[i, j];
+        c[i].Add(0);
+        for (int k = 0; k < a[i].Count; k++)
+        {
+            c[i][j] += (a[i][k] * b[k][j]);
+        }
+        Console.Write($"{c[i][j]} ");
     }
-    avg = avg / array.GetLength(0);
-    Console.Write($"{Math.Round(avg, 1)}; ");
+    Console.WriteLine();
 }
 
-int[,] FillArray(int[,]  arr)
+List<List<int>> FillArray(List<List<int>>  arr, int rowCount, int colCount)
 {
-    for (int i = 0; i <= array.GetLength(0) - 1; i++)
+    for (int i = 0; i <= rowCount - 1; i++)
     {
-        for (int j = 0; j <= array.GetLength(1) - 1; j++)
+        arr.Add(new List<int>());
+        for (int j = 0; j <= colCount - 1; j++)
         {
-            array[i, j] = new Random().Next(10, 100);
-            Console.Write($"{array[i, j]} ");
+            arr[i].Add(new Random().Next(1, 10));
+            Console.Write($"{arr[i][j]} ");
         }
         Console.WriteLine();
     }
     return arr;
 }
+
