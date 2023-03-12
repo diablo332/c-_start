@@ -1,46 +1,19 @@
-﻿/* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-Например, даны 2 матрицы:
-2 4 | 3 4
-3 2 | 3 3
-Результирующая матрица будет:
-18 20
-15 18 */
-
-
-List<List<int>> a = new List<List<int>>();
-a = FillArray(a, 2, 2);
-Console.WriteLine("--------");
-List<List<int>> b = new List<List<int>>();
-b = FillArray(b, a.Count, a[0].Count);
-Console.WriteLine("--------");
-List<List<int>> c = new List<List<int>>();
-for (int i = 0; i < a.Count; i++)
-{
-    c.Add(new List<int>());
-    for (int j = 0; j < b[i].Count; j++)
-    {
-        c[i].Add(0);
-        for (int k = 0; k < a[i].Count; k++)
-        {
-            c[i][j] += (a[i][k] * b[k][j]);
-        }
-        Console.Write($"{c[i][j]} ");
+﻿/* Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+m = 2, n = 3 -> A(m,n) = 9
+m = 3, n = 2 -> A(m,n) = 29*/
+Console.Write("Введите число M: ");
+int m = 0;
+if (int.TryParse(Console.ReadLine(), out m)){
+    Console.Write("Введите число N: ");
+    int n = 0;
+    if (int.TryParse(Console.ReadLine(), out n)){
+        int akkerman = Akkerman(m, n);
+        Console.Write($"Akkerman: {akkerman}");
     }
-    Console.WriteLine();
 }
-
-List<List<int>> FillArray(List<List<int>>  arr, int rowCount, int colCount)
+int Akkerman(int m, int n)
 {
-    for (int i = 0; i <= rowCount - 1; i++)
-    {
-        arr.Add(new List<int>());
-        for (int j = 0; j <= colCount - 1; j++)
-        {
-            arr[i].Add(new Random().Next(1, 10));
-            Console.Write($"{arr[i][j]} ");
-        }
-        Console.WriteLine();
-    }
-    return arr;
+  if (m == 0) return n + 1;
+  if (m > 0 && n == 0) return Akkerman(m - 1, 1);
+  else return Akkerman(m - 1, Akkerman(m, n - 1));
 }
-

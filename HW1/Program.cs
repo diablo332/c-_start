@@ -1,38 +1,13 @@
-﻿/* Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-Например, задан массив:
-1 4 7 2
-5 9 2 3
-8 4 2 4
-В итоге получается вот такой массив:
-7 4 2 1
-9 5 3 2
-8 4 4 2*/
-List<List<int>> array = new List<List<int>>();
-array = FillArray(array, 3, 4);
-Console.WriteLine("--------");
-for (int i = 0; i <= array.Count - 1; i++)
-{
-    array[i].Sort();
-    array[i].Reverse();
-    for (int j = 0; j <= array[i].Count - 1; j++)
-    {
-        Console.Write($"{array[i][j]} ");
-    }
-    Console.WriteLine();
+﻿/* Задача 64: Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
+N = 5 -> "5, 4, 3, 2, 1"
+N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"*/
+Console.Write("Введите число N: ");
+int n = 0;
+if (int.TryParse(Console.ReadLine(), out n)){
+    Console.Write($"{NaturalNumber(n, 1)}");
 }
-
-List<List<int>> FillArray(List<List<int>>  arr, int rowCount, int colCount)
+string NaturalNumber(int n, int m)
 {
-    for (int i = 0; i <= rowCount - 1; i++)
-    {
-        arr.Add(new List<int>());
-        for (int j = 0; j <= colCount - 1; j++)
-        {
-            arr[i].Add(new Random().Next(1, 10));
-            Console.Write($"{arr[i][j]} ");
-        }
-        Console.WriteLine();
-    }
-    return arr;
+  if (n == m) return n.ToString();
+  else return $"{m}, {NaturalNumber(n, m + 1)}";
 }
-
